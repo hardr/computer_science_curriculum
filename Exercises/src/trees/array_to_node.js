@@ -37,7 +37,7 @@
 
   Your job is to turn an array with the format above into a tree of nodes.
 
-  Imlement this depth-first, using recursion.
+  Implement this depth-first, using recursion.
 
 */
 
@@ -48,8 +48,23 @@ var Node = require('./node');
 
 
 //Make sure that this function calls new Node()
-var arrayToNode = function(input) {
+// var arrayToNode = function(input) {
+//   var destroy = input;
+//   var tree = new Node(input[0]);
+//     tree.children = input[1];
+//     while(destroy[1].length) {
+//       tree.children.pop()
+//     }
+//     return tree;
+//   }
+// };
 
+function arrayToNode (input) {
+  let [name, children] = input;
+  let node = new Node(name);
+  children.forEach(child => node.addChild(arrayToNode(child)));
+
+  return node;
 };
 
 module.exports = arrayToNode;

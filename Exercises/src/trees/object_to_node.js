@@ -7,7 +7,7 @@
       /\
     B   C
    /\
-  D E
+  D  E
 
   You can represent trees with objects and arrays in various different ways.
   One way looks like this:
@@ -49,6 +49,13 @@ var Node = require('./node');
 
 //Make sure that this function calls new Node()
 var objectToNode = function(object) {
+  // console.log(object);
+  let { name, children } = object;
+
+  let node = new Node(name);
+  children.forEach(child => node.addChild(objectToNode(child)));
+
+  return node;
 };
 
 module.exports = objectToNode;
